@@ -1,9 +1,9 @@
-let noteForm;
-let noteTitle;
-let noteText;
-let saveNoteBtn;
-let newNoteBtn;
-let noteList;
+let noteForm = document.getElementsByClassName('note-form') ;
+let noteTitle = document.getElementsByClassName('note-title');
+let noteText = getElementsByClassName('note-text');
+let saveNoteBtn = getElementsByClassName('save-note-btn');
+let newNoteBtn = getElementsByClassName('new-note-btn');
+let noteList = getElementsByClassName('note-list');
 
 if (window.location.pathname === "/notes.html") {
   noteForm = document.querySelector(".note-form");
