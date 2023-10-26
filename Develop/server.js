@@ -1,4 +1,5 @@
 const express = require("express");
+const { read } = require("fs");
 const app = express();
 const path = require("path");
 const port = 3000;
@@ -38,13 +39,23 @@ app.get("/api/notes", function (req, res) {
   res.send(notesArray);
 });
 
-// make a POST endpoint
+
+app.post('/api/notes', (req, res) => {
+  const body = req.body;
+  // do something with the body
+  res.send('success');
+});
 // it will add a new item to notesArray
 // later, write the new array to db.json
 //   notesArray.push({ id: 2, title: "new" });
 
-// make a DELETE endpoint
+app.delete('/api/notes/15555', (req, res) => {
+  const id = req.params.id;
+res.status(200).send('User deleted successfully');
+});
+
 // it will remove an item from notesArray by id
+notesArray.splice(notesArray,1);
 
 app.listen(port, () => {
   console.log(`Note Taker app listening on port ${port}`);
