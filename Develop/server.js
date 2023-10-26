@@ -6,7 +6,6 @@ const port = 3000;
 
 var notesArray = [
   {
-    id: 15555,
     title: "Test Title",
     text: "Test text",
   },
@@ -35,27 +34,30 @@ app.get("/assets/js/script.js", function (req, res) {
 app.get("/api/notes", function (req, res) {
   // TODO: read db.json and parse json array from it
 
+  for (let i = 0; i < notesArray.length; i++) {
+    notesArray[i].id = i + 1;
+  }
+
   // return array in res.send
   res.send(notesArray);
 });
 
-
-app.post('/api/notes', (req, res) => {
-  const body = req.body;
-  // do something with the body
-  res.send('success');
-});
 // it will add a new item to notesArray
 // later, write the new array to db.json
-//   notesArray.push({ id: 2, title: "new" });
-
-app.delete('/api/notes/15555', (req, res) => {
-  const id = req.params.id;
-res.status(200).send('User deleted successfully');
+app.post("/api/notes", (req, res) => {
+  const body = req.body;
+  // do something with the body
+  res.send("success");
+  notesArray.push({ title: "new" });
 });
 
-// it will remove an item from notesArray by id
-notesArray.splice(notesArray,1);
+app.delete("/api/notes/:id", (req, res) => {
+  const id = req.params.id;
+
+  // it will remove an item from notesArray by id
+  notesArray.splice(notesArray, 1);
+  res.status(200).send("User deleted successfully");
+});
 
 app.listen(port, () => {
   console.log(`Note Taker app listening on port ${port}`);
